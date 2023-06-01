@@ -142,30 +142,33 @@ class RentalController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validar los datos del formulario
-        $request->validate([
-            'customer_id' => 'required|exists:customer,customer_id',
-            'inventory_id' => 'required|exists:inventory,inventory_id'
-        ]);
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'customer_id' => 'required|exists:customer,customer_id',
+        'inventory_id' => 'required|exists:inventory,inventory_id'
+    ]);
 
-        // Obtener los datos del formulario
-        $customerId = $request->input('customer_id');
-        $inventoryId = $request->input('inventory_id');
+    // Obtener los datos del formulario
+    $customerId = $request->input('customer_id');
+    $inventoryId = $request->input('inventory_id');
+    $returnDate = $request->input('return_date');
+    $staffId = $request->input('staff_id');
 
-        // Insertar el nuevo alquiler en la base de datos
-        DB::table('rental')->insert([
-            'rental_date' => now(),
-            'inventory_id' => $inventoryId,
-            'customer_id' => $customerId,
-            'return_date' => null,
-            'staff_id' => null,
-            'last_update' => now()
-        ]);
+    // Insertar el nuevo alquiler en la base de datos
+    DB::table('rental')->insert([
+        'rental_date' => now(),
+        'inventory_id' => $inventoryId,
+        'customer_id' => $customerId,
+        'return_date' => $returnDate,
+        'staff_id' => $staffId,
+        'last_update' => now()
+    ]);
 
-        // Redireccionar a la página de historial de alquileres con un mensaje de éxito
-        return redirect()->route('rental.history')->with('success', 'El alquiler se ha creado correctamente.');
-    }
+    // Redireccionar a la página de historial de alquileres con un mensaje de éxito
+    return redirect()->route('rental.history')->with('success', 'El alquiler se ha creado correctamente.');
+}
+
 
     public function create()
     {

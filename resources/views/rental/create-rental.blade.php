@@ -34,6 +34,14 @@
                                 <label for="inventory_id">ID del Inventario:</label>
                                 <input type="number" name="inventory_id" id="inventory_id" class="form-control" placeholder="Ingrese el ID del Inventario" required>
                             </div>
+                            <div class="form-group">
+                                <label for="return_date">Fecha de devolución:</label>
+                                <input type="date" name="return_date" class="form-control">
+                             </div>
+                            <div class="form-group">
+                                <label for="staff_id">ID del personal:</label>
+                                <input type="number" name="staff_id" class="form-control">
+                            </div>
                             <button type="submit" class="btn btn-primary">Crear Alquiler</button>
                         </form>
                     </div>
